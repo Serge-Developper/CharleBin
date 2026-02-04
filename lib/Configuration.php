@@ -98,7 +98,6 @@ class Configuration
             'apiurl'    => '',
         ),
     );
-
     /**
      * parse configuration file and ensure default configuration values are present
      *
@@ -125,7 +124,6 @@ class Configuration
                 break;
             }
         }
-
         $opts = '_options';
         foreach (self::getDefaults() as $section => $values) {
             // fill missing sections with default values
@@ -178,7 +176,6 @@ class Configuration
                     'prefix'                  => '',
                 );
             }
-
             // "*_options" sections don't require all defaults to be set
             if (
                 $section !== 'model_options' &&
@@ -219,7 +216,6 @@ class Configuration
                 }
             }
         }
-
         // support for old config file format, before the fork was renamed and PSR-4 introduced
         $this->_configuration['model']['class'] = str_replace(
             'zerobin_', 'privatebin_',
@@ -245,7 +241,6 @@ class Configuration
             $this->_configuration['main']['basepath'] .= '/';
         }
     }
-
     /**
      * get configuration as array
      *
@@ -255,7 +250,6 @@ class Configuration
     {
         return $this->_configuration;
     }
-
     /**
      * get default configuration as array
      *
@@ -265,7 +259,6 @@ class Configuration
     {
         return self::$_defaults;
     }
-
     /**
      * get a key from the configuration, typically the main section or all keys
      *
@@ -282,7 +275,6 @@ class Configuration
         }
         return $this->_configuration[$section][$key];
     }
-
     /**
      * get a section from the configuration, must exist
      *

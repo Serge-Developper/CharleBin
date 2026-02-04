@@ -125,7 +125,7 @@ class Controller
                 $this->_create();
                 break;
             case 'delete':
-                $this->_delete(
+                $this->delete(
                     $this->_request->getParam('pasteid'),
                     $this->_request->getParam('deletetoken')
                 );
@@ -269,7 +269,7 @@ class Controller
      * @param  string $dataid
      * @param  string $deletetoken
      */
-    private function _delete($dataid, $deletetoken)
+    private function delete($dataid, $deletetoken)
     {
         try {
             $paste = $this->_model->getPaste($dataid);

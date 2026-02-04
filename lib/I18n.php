@@ -163,17 +163,11 @@ class I18n
         $availableLanguages = self::getAvailableLanguages();
 
         // check if the lang cookie was set and that language exists
-        if (
-            array_key_exists('lang', $_COOKIE) &&
-            ($key = array_search($_COOKIE['lang'], $availableLanguages)) !== false
-        ) {
+        if (array_key_exists('lang', $_COOKIE) && ($key = array_search($_COOKIE['lang'], $availableLanguages)) !== false) {
             $match = $availableLanguages[$key];
-        }
-        // find a translation file matching the browsers language preferences
-        else {
-            $match = self::_getMatchingLanguage(
-                self::getBrowserLanguages(), $availableLanguages
-            );
+        } else {
+            // find a translation file matching the browsers language preferences
+            $match = self::_getMatchingLanguage(self::getBrowserLanguages(), $availableLanguages);
         }
 
         // load translations
@@ -212,16 +206,16 @@ class I18n
      * @static
      * @return array
      */
-    public static function getBrowserLanguages()
+   public static function getBrowserLanguages()
     {
         $languages = array();
         if (array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
             $languageRanges = explode(',', trim($_SERVER['HTTP_ACCEPT_LANGUAGE']));
             foreach ($languageRanges as $languageRange) {
                 if (preg_match(
-                    '/(\*|[a-zA-Z0-9]{1,8}(?:-[a-zA-Z0-9]{1,8})*)(?:\s*;\s*q\s*=\s*(0(?:\.\d{0,3})|1(?:\.0{0,3})))?/',
-                    trim($languageRange), $match
-                )) {
+                        '/(\*|[a-zA-Z0-9]{1,8}(?:-[a-zA-Z0-9]{1,8})*)(?:\s*;\s*q\s*=\s*(0(?:\.\d{0,3})|1(?:\.0{0,3})))?/',
+                        trim($languageRange), $match
+                )) { // <--- Les lignes ci-dessus ont maintenant une double indentation (20 espaces)
                     if (!isset($match[2])) {
                         $match[2] = '1.0';
                     } else {
