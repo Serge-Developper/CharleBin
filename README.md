@@ -108,3 +108,8 @@ npm test
 ## Licence et crédits
 - Licence: zlib/libpng (voir composer.json).
 - Projet original: PrivateBin — https://privatebin.info/
+
+## Cypress 
+
+ - J'ai crée un nouveau test via Cypress Studio puis j'ai crée un paste qui enregistre en temps réel une chaine de caractères et un mdp puis si on relance un test, Cypress va relancer tout le test qu'on a crée précédemment et indiquera si un problème est survenu et a qu'elle ligne précise dans le fichier js respectif du test
+ - Voici l'URL du test avec comme mot de passe test : http://localhost:8000/?6a45f850077ed46e#86aVe5dKPqFj25t86fLw5Mu9ZyauTPtKb31RSyMNi2nx

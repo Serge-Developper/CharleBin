@@ -14,3 +14,4 @@ lint:
 	./vendor/bin/phpstan analyse lib/ --level=1
 	# PHPMD : détecte le code trop complexe
 	./vendor/bin/phpmd ./lib ansi codesize,unusedcode,naming
+	./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix lib
