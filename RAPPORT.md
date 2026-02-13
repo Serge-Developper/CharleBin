@@ -185,7 +185,7 @@ Le pre-commit hook permet d'exécuter automatiquement les linters avant chaque c
 Fichier : `.git/hooks/pre-commit`
 
 ```bash
-#!/usr/bin/env bash
+
 set -eo pipefail
 
 RED='\033[0;31m'
@@ -194,7 +194,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# Fonction pour joindre des éléments avec un délimiteur
+
 function join_by {
     local d=${1-}
     local f=${2-}
