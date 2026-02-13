@@ -1,0 +1,52 @@
+name: Lint PHP
+
+on:
+  # Déclencher sur push vers main et sur les pull requests
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Permissions nécessaires
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  run-linters:
+    name: Run PHP Linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: none
+          tools: composer
+
+      - name: Install PHP dependencies
+        run: |
+          composer install --prefer-dist --no-progress --no-ansi --no-interaction
+          echo "${PWD}/vendor/bin" >> $GITHUB_PATH
+
+      - name: Run PHP CS Fixer
+        run: |
+          ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff --verbose
+
+      - name: Run PHPMD
+        run: |
+          # Trouver tous les fichiers PHP (exclure vendor et node_modules)
+          FILES=$(find lib -type f -name "*.php" | tr '\n' ',' | sed 's/,$//')
+          if [ -n "$FILES" ]; then
+            ./vendor/bin/phpmd $FILES text phpmd.xml
+          fi
+
+      - name: Run PHP_CodeSniffer
+        run: |
+          ./vendor/bin/phpcs --standard=ruleset.xml lib/
