@@ -632,7 +632,7 @@ Ce projet a permis de :
  ## Note sur l'architecture testée
 
 PrivateBin n'utilise pas une architecture MVC classique avec des classes Actions et Dispatch séparées. 
-À la place, nous avons testé :
+À la place, j'ai testé :
 - **Data/Filesystem** : Équivalent des Repository pour la gestion de la persistance
 - **Filter** : Logique métier de formatage et validation
 
